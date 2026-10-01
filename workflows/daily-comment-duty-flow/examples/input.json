@@ -1,0 +1,19 @@
+{
+  "launch_day": true,
+  "product": "ClipMate（剪贴板历史工具）",
+  "comments": [
+    {"user": "maker_fan99", "platform": "ProductHunt", "text": "Congrats! Finally a clipboard manager that doesn't feel bloated. Love the search speed."},
+    {"user": "dev_sarah", "platform": "ProductHunt", "text": "Does it support Windows 11 dark mode? And can I sync history across devices?"},
+    {"user": "angry_bob", "platform": "ProductHunt", "text": "Crashed twice within 10 minutes on Windows 10. How do I get a refund?"},
+    {"user": "skeptic_pete", "platform": "ProductHunt", "text": "This is just a copy of Paste with a new icon. Weird how all the upvotes came in the first hour, did you buy upvotes?"},
+    {"user": "老王聊软件", "platform": "V2EX", "text": "用了两天搜索确实快，希望加上 OCR 截图取字，要是能支持就好了"},
+    {"user": "潜水员", "platform": "即刻", "text": "mark 一下，看着不错"}
+  ],
+  "faq": {
+    "dark mode|深色": "支持 Win11 深色模式，自动跟随系统",
+    "sync|同步": "Pro 功能，端到端加密，可选开启，默认只存本机",
+    "refund|退款": "14 天无理由退款，走网站 /refund",
+    "privacy|隐私|上传": "内容只存本机 SQLite，无上传代码路径，断网可用",
+    "价格|收费|pricing|贵": "免费版完整（搜索+3个月历史）；Pro $8/月（OCR/无限历史/同步）"
+  }
+}

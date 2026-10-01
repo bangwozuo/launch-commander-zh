@@ -1,0 +1,50 @@
+{
+  "skill_id": "de_dev_02_sk01",
+  "name": "Product Hunt 文案",
+  "type": "atomic",
+  "input": {
+    "type": "object",
+    "required": ["brief"],
+    "properties": {
+      "brief": {"type": "string", "description": "产品说明：是什么、给谁用、核心功能、差异化", "maxLength": 2000},
+      "key_points": {"type": "string", "description": "必写要点：功能/数据/定价/发布时点（数据须真实可溯源）"},
+      "tone": {"type": "string", "description": "语气要求，默认「直接、开发者对开发者，不营销腔」"},
+      "constraints": {
+        "type": "object",
+        "description": "硬约束（默认值见 schema constraints）",
+        "properties": {
+          "tagline_max_chars": {"type": "integer", "default": 60},
+          "maker_comment_words": {"type": "string", "default": "150-250"}
+        }
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": ["tagline", "description", "maker_comment", "openers"],
+    "properties": {
+      "tagline": {"type": "string", "description": "≤60 字符，无句号；给 3 条候选标注公式（动词+结果/痛点否定/具体数字）"},
+      "description": {"type": "string", "description": "产品描述 ≤260 字符"},
+      "gallery_notes": {"type": "array", "description": "5 张 1270×760 逐张配文：主视觉/演示×2/背书/定价"},
+      "maker_comment": {"type": "string", "description": "首评三段式 Why/What/Ask，150-250 词"},
+      "openers": {"type": "array", "description": "开场话术 ×5（祝贺/定价/平台/竞品/负面），负面用「承认+给方案」模板"},
+      "evidence_check": {"type": "array", "description": "文案中断言的依据核对表；无依据的断言必须删除"}
+    }
+  },
+  "constraints": {
+    "tagline_max_chars": 60,
+    "description_max_chars": 260,
+    "gallery_count": 5,
+    "gallery_size": "1270x760",
+    "maker_comment_words": "150-250",
+    "launch_time": "00:01 PT",
+    "first_comment_within_minutes": 30,
+    "reply_sla_firstday_minutes": 30,
+    "forbidden_openers": ["A", "AI-powered", "an innovative"],
+    "no_incentivized_upvote": true,
+    "no_fabricated_metrics": true,
+    "ai_label_required": true,
+    "human_review_required": true
+  },
+  "artifacts_note": "T2 纯提示词技能，无脚本；文案包经人工确认后上传 PH"
+}

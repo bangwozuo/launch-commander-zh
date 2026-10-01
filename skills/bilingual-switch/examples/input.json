@@ -1,0 +1,12 @@
+{
+  "content": "中文版主稿（V2EX）：做了两年，我的剪贴板工具终于要发了。起因是丢了太多次复制过的 API key（丢到第 7 次的时候破防了）。ClipMate 的方案：所有记录只存本机 SQLite，Ctrl+Shift+V 呼出搜索，三个月内内容 0.3 秒命中（i7/16GB、10 万条实测）。顺手做了截图 OCR 取字和粘贴去格式。免费 + Pro $8/月。",
+  "target_lang": "English（PH/Reddit 社区）",
+  "glossary": {
+    "ClipMate": "不翻译",
+    "tagline「你的剪贴板，终于能搜了」": "重新创作，不直译",
+    "10 万条": "100k entries",
+    "$8/月": "$8/mo"
+  },
+  "audience_en": "PH hunters / r/SideProject",
+  "audience_zh": "V2EX 程序员"
+}

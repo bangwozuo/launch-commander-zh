@@ -1,0 +1,48 @@
+{
+  "workflow_id": "de_dev_02_wf03",
+  "name": "发布日历排期",
+  "type": "composite",
+  "input": {
+    "type": "object",
+    "required": ["launch_date"],
+    "properties": {
+      "product": {"type": "string", "description": "产品名"},
+      "launch_date": {"type": "string", "description": "发布日 T0（ISO 日期；缺失/非法 → 退出码 2 不编造）"},
+      "local_utc_offset": {"type": "integer", "description": "开发者本地 UTC 偏移（如 UTC+8 填 8），默认 8"},
+      "platforms": {"type": "array", "description": "平台列表；不在支持列表的标「待人工补充时点」"},
+      "waitlist_size": {"type": "integer", "description": "当前 waitlist 人数（升降级阈值：超预期 50%+ 可升级）"}
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": ["calendar", "slots", "checklist"],
+    "properties": {
+      "calendar": {"type": "array", "description": "倒排日历 T-7→T+7（节点/日期/星期/动作/人工确认点/状态）"},
+      "slots": {"type": "array", "description": "T-0 时点表（本地换算，跨日显式标注；周末 Reddit 顺延周一）"},
+      "checklist": {"type": "array", "description": "T-1 十项检查清单（第1/6/7项红线；结果由人工回填）"},
+      "conflicts": {"type": "array", "description": "PH 黄金窗口（00:01-02:00 PT 本地段 ±120min）冲突项"},
+      "summary": {"type": "object", "description": "平台数/时点条目/冲突数/降级规则"}
+    }
+  },
+  "steps": {
+    "dag": "publish-schedule SOP 规则（内置执行）→ 倒排日历 → T0 时点表 → T1 清单与升降级",
+    "failure_handling": {
+      "launch_date 非法": "退出码 2，打印修复提示，不编造日期",
+      "平台未收录": "保留并标待人工补充",
+      "周末 Reddit": "顺延下周一并标注",
+      "夏令时切换日": "人工复核换算"
+    }
+  },
+  "scripts": {"run": "scripts/run_flow.py", "usage": "python3 scripts/run_flow.py --input input.json --outdir out"},
+  "artifacts": ["out/发布日历.xlsx", "out/发布日T0时间轴.png", "out/publish_calendar.json"],
+  "handoff": {"T-0 值守": "daily-comment-duty-flow", "T+1 战报": "launch-battle-review-flow"},
+  "constraints": {
+    "no_auto_publish": true,
+    "ph_window_guard_minutes": 120,
+    "reddit_weekday_only": true,
+    "faq_gate": "T-3 须 FAQ ≥15 条",
+    "alarms_for_ph": 3,
+    "ai_label_required": true,
+    "human_review_required": true
+  }
+}

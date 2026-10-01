@@ -1,0 +1,58 @@
+{
+  "workflow_id": "de_dev_02_wf02",
+  "name": "多平台文案适配",
+  "type": "composite",
+  "input": {
+    "type": "object",
+    "required": ["copies"],
+    "properties": {
+      "copies": {
+        "type": "array",
+        "description": "各平台版本（platform-format-adapt / bilingual-switch 产出后回填）",
+        "items": {
+          "type": "object",
+          "required": ["platform", "body"],
+          "properties": {
+            "platform": {"type": "string", "description": "平台名（未收录标人工核对）"},
+            "title": {"type": "string", "description": "标题（V2EX/小红书需要）"},
+            "body": {"type": "string", "description": "正文全文"},
+            "tags": {"type": "array", "description": "tag 列表（X ≤2）"},
+            "lang": {"type": "string", "description": "en/zh——双语口径比对按此配对"}
+          }
+        }
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": ["spec_checks", "parity"],
+    "properties": {
+      "spec_checks": {"type": "array", "description": "平台硬规格逐项（X 280/tag≤2/首条无链接、V2EX 标题≤40、即刻≤500、小红书 20+1000、Reddit 披露）"},
+      "parity": {"type": "array", "description": "双语数字口径比对（en↔zh 数字集合差集；中文「N万」折算对齐 100k）；漂移=红线"},
+      "summary": {"type": "object", "description": "检查条数/未过数/整体判定"}
+    }
+  },
+  "steps": {
+    "dag": "platform-format-adapt（重写位）→ bilingual-switch（双语位）→ 内置规格校验 → 内置数字口径比对",
+    "failure_handling": {
+      "平台未收录": "标「需人工核对官方规格」，不编造限制",
+      "超长": "❌ 并给出超出量（重写不是截断）",
+      "首条含链接": "❌「链接放回复」",
+      "Reddit 未披露": "❌（版封风险）",
+      "数字口径漂移": "红线，列两边差集并要求恢复一致",
+      "无双语对": "标「单语言」跳过比对"
+    }
+  },
+  "scripts": {"run": "scripts/run_flow.py", "usage": "python3 scripts/run_flow.py --input input.json --outdir out"},
+  "artifacts": ["out/适配校验清单.xlsx", "out/adapt_result.json"],
+  "handoff": {"版本排期": "publish-calendar-flow", "语感终审": "人工/母语者"},
+  "constraints": {
+    "specs": {"X": {"body": 280, "tags": 2, "first_link": false}, "V2EX": {"title": 40}, "即刻": {"body": 500}, "小红书": {"title": 20, "body": 1000}, "微博": {"body": 2000}},
+    "reddit_disclosure_required": true,
+    "number_parity_required": true,
+    "rewrite_not_translate": true,
+    "unverified_spec_marked": true,
+    "ai_label_required": true,
+    "human_review_required": true
+  }
+}

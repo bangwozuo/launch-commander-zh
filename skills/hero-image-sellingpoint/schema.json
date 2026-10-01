@@ -1,0 +1,68 @@
+{
+  "skill_id": "de_dev_02_sk02",
+  "name": "首图卖点提炼",
+  "type": "atomic",
+  "input": {
+    "type": "object",
+    "required": ["features"],
+    "properties": {
+      "product": {"type": "string", "description": "产品名"},
+      "audience": {"type": "string", "description": "目标受众（影响受众宽度打分）"},
+      "features": {
+        "type": "array",
+        "description": "功能列表，维度分须挂证据（用户原话/竞品对照/埋点）",
+        "items": {
+          "type": "object",
+          "required": ["name", "description"],
+          "properties": {
+            "name": {"type": "string", "description": "功能名"},
+            "description": {"type": "string", "description": "一句话描述（用户视角）"},
+            "demoable": {"type": "integer", "description": "演示性：1=一屏 GIF 能演示完，0=不可演示", "enum": [0, 1]},
+            "wow": {"type": "integer", "description": "冲击力 1-5（5=看到会「哦！」出声）", "minimum": 1, "maximum": 5},
+            "breadth": {"type": "integer", "description": "受众宽度 1-5（5=目标用户 80%+ 用得上）", "minimum": 1, "maximum": 5},
+            "uniqueness": {"type": "integer", "description": "差异化 1-5（5=同类没做过）", "minimum": 1, "maximum": 5}
+          }
+        }
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": ["summary", "ranked"],
+    "properties": {
+      "summary": {
+        "type": "object",
+        "description": "入选数 / TOP1 / TOP2 分差",
+        "properties": {
+          "入选规则": {"type": "string", "description": "得分 ≥60 且可演示，取前 5；首图主视觉 = TOP1"}
+        }
+      },
+      "ranked": {
+        "type": "array",
+        "description": "评分排序结果，含 GIF 类型与分镜骨架",
+        "items": {"type": "object", "properties": {
+          "综合得分": {"type": "number", "description": "0-100，演示性 35% + 冲击力 25% + 受众宽度 25% + 差异化 15%"},
+          "GIF 类型": {"type": "string", "enum": ["speed", "before_after", "showcase", "flow", "—（不可演示：建议只做文字卖点，不上 GIF）"]},
+          "入选首图/GIF": {"type": "string", "description": "✅ 入选 / 空"}
+        }}
+      },
+      "checks": {"type": "array", "description": "硬约束检查（入选数/分差/不可演示项）"}
+    },
+    "x-review-needed": "维度打分证据、首图文案、GIF 字幕由模型按 prompt.txt 撰写"
+  },
+  "scripts": {
+    "score": "scripts/sellingpoint_score.py",
+    "usage": "python3 scripts/sellingpoint_score.py --input input.json --outdir out"
+  },
+  "artifacts": ["out/卖点评分清单.xlsx", "out/卖点评分对比.png", "out/sellingpoint.json"],
+  "constraints": {
+    "weights": {"demoable": 0.35, "wow": 0.25, "breadth": 0.25, "uniqueness": 0.15},
+    "selection_rule": "得分≥60 且 demoable=1，取前 5",
+    "ph_hero_size": "1270x760",
+    "gif_max_seconds": 5,
+    "max_hero_points": 5,
+    "evidence_required_for_45": true,
+    "ai_label_required": true,
+    "human_review_required": true
+  }
+}

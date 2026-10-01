@@ -1,0 +1,57 @@
+{
+  "skill_id": "de_dev_02_sk04",
+  "name": "平台格式适配",
+  "type": "atomic",
+  "input": {
+    "type": "object",
+    "required": ["content"],
+    "properties": {
+      "content": {"type": "string", "description": "主稿全文（PH 版或产品说明），含钩子/卖点/证据/行动召唤", "maxLength": 5000},
+      "platforms": {"type": "array", "description": "目标平台列表", "items": {"type": "string", "enum": ["ProductHunt", "X", "Reddit", "V2EX", "即刻", "小红书", "微博", "公众号"]}},
+      "launch_date": {"type": "string", "description": "发布日，用于倒排各平台时点"},
+      "notes": {"type": "string", "description": "特殊要求（花絮/口径限制/thread 需求等）"}
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": ["adapted", "checklist"],
+    "properties": {
+      "adapted": {
+        "type": "array",
+        "description": "各平台版本全文（重写非翻译），每版含正文/图说明/发布时点",
+        "items": {
+          "type": "object",
+          "properties": {
+            "platform": {"type": "string"},
+            "title_or_hook": {"type": "string"},
+            "body": {"type": "string"},
+            "media_note": {"type": "string", "description": "图/GIF 规格说明"},
+            "post_time": {"type": "string", "description": "该平台发布时点（PH 00:01 PT / X 双峰 / V2EX 上午10点 / 中文社区晚8-10点）"}
+          }
+        }
+      },
+      "checklist": {
+        "type": "array",
+        "description": "逐平台核对表：长度/图规格/平台禁忌扫描/事实口径一致性",
+        "items": {"type": "object", "properties": {"平台": {"type": "string"}, "检查项": {"type": "string"}, "结果": {"type": "string"}}}
+      },
+      "change_log": {"type": "array", "description": "改动说明：主稿→各平台的实质改动与理由（证据零件不得删除）"}
+    }
+  },
+  "constraints": {
+    "platform_specs": {
+      "ProductHunt": {"tagline_chars": 60, "desc_chars": 260, "gallery": "5张 1270x760", "time": "00:01 PT"},
+      "X": {"chars": 280, "media": "16:9 1600x900", "time": "9AM/8PM EST 双峰", "taboo": "首条不带链接，tag≤2"},
+      "Reddit": {"title_chars": 300, "time": "工作日 8-10AM EST", "taboo": "必须披露 I made this"},
+      "V2EX": {"title_chars": 40, "media": "正文不放图", "time": "上午10点", "taboo": "不标题党不加求饶句"},
+      "即刻": {"chars": 500, "media": "1-3张 3:4", "time": "晚8-10点", "taboo": "纯广告贴无互动"},
+      "小红书": {"title_chars": 20, "body_chars": 1000, "media": "3-6张 3:4", "time": "晚8-10点", "taboo": "导流敏感词限流"}
+    },
+    "rewrite_not_translate": true,
+    "keep_evidence_chain": true,
+    "unverified_spec_marked": true,
+    "ai_label_required": true,
+    "human_review_required": true
+  },
+  "artifacts_note": "T2 纯提示词技能，无脚本；各平台版本经人工确认后发布"
+}

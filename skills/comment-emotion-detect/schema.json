@@ -1,0 +1,73 @@
+{
+  "skill_id": "de_dev_02_sk07",
+  "name": "评论情绪识别",
+  "type": "atomic",
+  "input": {
+    "type": "object",
+    "required": ["comments"],
+    "properties": {
+      "product": {"type": "string", "description": "产品名，用于语境判断"},
+      "platform": {"type": "string", "description": "主平台；单条评论可各自带 platform 覆盖", "enum": ["ProductHunt", "Reddit", "V2EX", "X", "即刻", "微博", "公众号", "通用"]},
+      "comments": {
+        "type": "array",
+        "description": "评论流，每条含用户/平台/原文",
+        "items": {
+          "type": "object",
+          "required": ["text"],
+          "properties": {
+            "user": {"type": "string", "description": "用户昵称"},
+            "platform": {"type": "string", "description": "该评论所在平台"},
+            "text": {"type": "string", "description": "评论原文（尽量全文，截断会误判）"}
+          }
+        }
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": ["summary", "queue"],
+    "properties": {
+      "summary": {
+        "type": "object",
+        "description": "情绪总览与健康度判定",
+        "properties": {
+          "评论总数": {"type": "integer"},
+          "正面": {"type": "integer"}, "负面": {"type": "integer"},
+          "中性": {"type": "integer"}, "疑问": {"type": "integer"}, "风险": {"type": "integer"},
+          "正面占比": {"type": "string", "description": "≥60% 且风险=0 为健康"},
+          "P0/P1 数量": {"type": "integer", "description": ">8 条未回必须先清队列"}
+        }
+      },
+      "queue": {
+        "type": "array",
+        "description": "优先级队列，P0→P4 排序，每条带 SLA 与建议动作",
+        "items": {
+          "type": "object",
+          "properties": {
+            "情绪": {"type": "string", "enum": ["🟢 正面", "⚠️ 负面", "⚪ 中性", "🔵 疑问", "🔴 风险"]},
+            "风险子类": {"type": "string", "enum": ["刷榜指控", "安全/隐私质疑", "退款诉求", "抄袭/竞品指控", "存续质疑", "水军指控", ""]},
+            "优先级": {"type": "string", "enum": ["P0", "P1", "P2", "P3", "P4"]},
+            "响应SLA": {"type": "string"},
+            "建议动作": {"type": "string"}
+          }
+        }
+      }
+    },
+    "x-review-needed": "反讽/刷量号/老用户差评归因须由模型按 prompt.txt 复核"
+  },
+  "scripts": {
+    "scan": "scripts/emotion_scan.py",
+    "usage": "python3 scripts/emotion_scan.py --input input.json --outdir out"
+  },
+  "artifacts": ["out/评论分类清单.xlsx", "out/情绪分布.png", "out/emotion_scan.json"],
+  "constraints": {
+    "sla_p0_minutes": 30,
+    "sla_ph_firstday_minutes": 30,
+    "healthy_positive_ratio": "≥60%",
+    "negative_alert_ratio": ">20%",
+    "no_delete_comments": true,
+    "no_auto_reply": true,
+    "ai_label_required": true,
+    "human_review_required": true
+  }
+}

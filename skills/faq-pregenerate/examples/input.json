@@ -1,0 +1,13 @@
+{
+  "subject": "ClipMate（Windows 剪贴板历史工具）：本地存储、免费+Pro $8/月、支持 Win10/11、一人独立开发、竞品为 Ditto 和 PasteBar",
+  "known_questions": [
+    "和 Ditto 有什么区别？Ditto 还免费",
+    "为什么不开源？",
+    "剪贴板数据会上传吗？",
+    "支持 macOS 吗？",
+    "最多存多少条记录？",
+    "一个人做的，弃坑了怎么办？"
+  ],
+  "launch_context": "PH 发布日 2026-09-29；英文社区 PH/Reddit/X + 中文社区 V2EX/即刻",
+  "audience": "开发者与重度文字工作者"
+}

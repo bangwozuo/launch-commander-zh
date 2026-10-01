@@ -1,0 +1,42 @@
+{
+  "skill_id": "de_dev_02_sk06",
+  "name": "发布排期",
+  "type": "atomic",
+  "layer": "T4（调度型 SOP）",
+  "input": {
+    "type": "object",
+    "required": ["launch_date"],
+    "properties": {
+      "product": {"type": "string", "description": "产品名"},
+      "launch_date": {"type": "string", "description": "发布日 T-0（星期几影响 Reddit 工作日规则）"},
+      "timezone_local": {"type": "string", "description": "开发者本地时区（用于 00:01 PT 换算与闹钟设置）"},
+      "platforms": {"type": "array", "description": "目标平台列表"},
+      "waitlist_size": {"type": "integer", "description": "当前 waitlist 人数（升降级规则用）"},
+      "notes": {"type": "string", "description": "特殊约束（版规/账号注册时长等）"}
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": ["calendar", "t0_timetable", "t1_checklist"],
+    "properties": {
+      "calendar": {"type": "array", "description": "倒排日历 T-7→T+7：节点/日期/动作/确认点/状态"},
+      "t0_timetable": {"type": "array", "description": "T-0 时点表（本地时间已换算）：PH 00:01 PT、X 双峰、Reddit 工作日 8-10AM EST、V2EX 上午10点、中文社区晚8-10点"},
+      "t1_checklist": {"type": "array", "description": "T-1 十项检查清单（链接/图尺寸/tagline≤60/视频≤60s/价格一致/账号状态/闹钟/埋点）"},
+      "escalation_rules": {"type": "array", "description": "升降级规则：升级（waitlist 超预期50%+）/降级（红线未过延后24h）/中止（P0 bug）"},
+      "decision_log": {"type": "array", "description": "升降级决策记录"}
+    }
+  },
+  "constraints": {
+    "sop_type": true,
+    "no_auto_publish": true,
+    "connector_policy": "只读提醒优先；OAuth 最小权限；无法确认降级手动",
+    "degrade_path": "连接器失效→打印时点表人工执行（SOP 无外部依赖可跑）",
+    "ph_golden_window": "00:01-02:00 PT 不排其他平台动作",
+    "delay_rule": "T-1 红线未过 → 延后 24 小时，不带病上线",
+    "no_incentivized": true,
+    "batch_confirm_forbidden": true,
+    "ai_label_required": true,
+    "human_review_required": true
+  },
+  "artifacts_note": "T4 SOP 技能，无脚本无连接器；日历与清单人工执行"
+}

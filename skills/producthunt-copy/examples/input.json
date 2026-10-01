@@ -1,0 +1,6 @@
+{
+  "brief": "为 ClipMate（Windows 剪贴板历史工具）撰写 Product Hunt 发布文案包，目标受众是开发者和重度文字工作者",
+  "key_points": "全局历史搜索（Ctrl+Shift+V 秒搜三个月记录）、截图 OCR 取字、粘贴代码自动去格式；本地存储不上传；Windows 10/11；发布日 2026-09-29 00:01 PT；定价免费+Pro $8/月；maker 是一个人独立开发两年",
+  "tone": "直接、开发者对开发者，不营销腔",
+  "constraints": {"tagline_max_chars": 60, "maker_comment_words": "150-250"}
+}

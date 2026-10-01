@@ -1,0 +1,57 @@
+{
+  "workflow_id": "de_dev_02_wf01",
+  "name": "发布素材包生成",
+  "type": "composite",
+  "input": {
+    "type": "object",
+    "required": ["features"],
+    "properties": {
+      "product": {"type": "string", "description": "产品名"},
+      "features": {"type": "array", "description": "功能列表（四维评分输入；4-5 分须挂证据）"},
+      "ph_copy": {
+        "type": "object",
+        "description": "PH 文案包字段（producthunt-copy 产出后回填）",
+        "properties": {
+          "tagline": {"type": "string", "description": "≤60 字符无句号"},
+          "gallery_count": {"type": "integer", "description": "应为 5"},
+          "gallery_size": {"type": "string", "description": "应为 1270x760"},
+          "demo_video_seconds": {"type": "integer", "description": "≤60"},
+          "price_pages": {"type": "object", "description": "官网/ProductHunt/README 三处价格（逐字一致）"}
+        }
+      },
+      "faq_total": {"type": "integer", "description": "FAQ 口径库总条数（≥15）"},
+      "faq_categories": {"type": "object", "description": "六类质疑各条数（每类 ≥2）"}
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": ["checks", "summary"],
+    "properties": {
+      "checks": {"type": "array", "description": "硬约束校验逐项（tagline/gallery/video/价格红线/FAQ 总量/FAQ 覆盖）"},
+      "summary": {"type": "object", "description": "TOP1 卖点/入选数/通过项/红线未过/FAQ 缺口/整体判定（✅ 可进入 T-1 / ⚠️ 补非红线 / ❌ 红线未过）"}
+    }
+  },
+  "steps": {
+    "dag": "hero-image-sellingpoint（脚本评分）→ 内置 PH 文案包硬约束校验 → 内置 FAQ 覆盖度校验",
+    "failure_handling": {
+      "上游退出码≠0或产物缺失": "中止打印 stderr",
+      "tagline 缺失": "标「缺失」列待办，不阻断",
+      "价格不一致": "红线 → 判定不可进入 T-1",
+      "FAQ 覆盖不足": "非红线 ⚠️，列缺口清单 T-3 前补齐"
+    }
+  },
+  "scripts": {"run": "scripts/run_flow.py", "usage": "python3 scripts/run_flow.py --input input.json --outdir out"},
+  "artifacts": ["out/素材包校验清单.xlsx", "out/sellingpoint.json", "out/kit_result.json"],
+  "handoff": {"文案生成": "producthunt-copy", "口径库": "faq-pregenerate", "校验前置": "publish-calendar-flow T-1 清单"},
+  "constraints": {
+    "tagline_max_chars": 60,
+    "gallery": "5张 1270x760",
+    "video_max_seconds": 60,
+    "price_verbatim_consistent": true,
+    "faq_total_min": 15,
+    "faq_per_category_min": 2,
+    "sellingpoint_rule": "得分≥60 且 demoable=1，取前 5",
+    "ai_label_required": true,
+    "human_review_required": true
+  }
+}

@@ -1,0 +1,59 @@
+name: 发布指挥官
+repo: bangwozuo/launch-commander-zh
+legacy_name: 发布日冲刺指挥官（PH Launch Commander）
+version: 0.2.0
+asset_type: prompt-only
+stage: P0
+complexity: S-M（P0 核心为纯提示词），P0 首发
+group: OPC
+runtime_dependencies: none
+api_key_required: false
+demand_ids:
+  - D28
+
+workflows:
+  - name: 发布素材包生成
+    id: de_dev_02_wf01
+  - name: 多平台文案适配
+    id: de_dev_02_wf02
+  - name: 发布日历排期
+    id: de_dev_02_wf03
+  - name: 当日评论值守
+    id: de_dev_02_wf04
+  - name: 发布战报复盘
+    id: de_dev_02_wf05
+
+skills:
+  - id: producthunt-copy
+    name: Product Hunt 文案
+    family: 
+  - id: hero-image-sellingpoint
+    name: 首图卖点提炼
+    family: 
+  - id: faq-pregenerate
+    name: FAQ 预生成
+    family: 
+  - id: platform-format-adapt
+    name: 平台格式适配
+    family: 
+  - id: bilingual-switch
+    name: 中英双语切换
+    family: 
+  - id: publish-schedule
+    name: 发布排期
+    family: 
+  - id: comment-emotion-detect
+    name: 评论情绪识别
+    family: 
+  - id: reply-drafting
+    name: 回复草拟
+    family: 
+  - id: battle-report-generate
+    name: 战报生成
+    family: 
+
+compliance:
+  ai_label_required: true
+  human_review_required: true
+  forbidden_words_check: true
+  official_api_only: true

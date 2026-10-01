@@ -1,0 +1,64 @@
+{
+  "workflow_id": "de_dev_02_wf05",
+  "name": "发布战报复盘",
+  "type": "composite",
+  "input": {
+    "type": "object",
+    "required": ["battle", "comments"],
+    "anyOf": [{"required": ["battle"]}, {"required": ["comments"]}],
+    "properties": {
+      "battle": {
+        "type": "object",
+        "description": "战报段（battle-report-generate 输入）：targets + platforms + hourly_pv",
+        "properties": {
+          "product": {"type": "string"}, "launch_date": {"type": "string"},
+          "targets": {"type": "object", "description": "五指标目标"},
+          "platforms": {"type": "array", "description": "各平台 pv/signups/stars/waitlist/mentions"},
+          "hourly_pv": {"type": "array", "description": "逐小时 PV（可选）"}
+        }
+      },
+      "comments": {"type": "array", "description": "发布日评论流（P0/P1 全量 + 其余随机采样，标注平台）"},
+      "duty_log": {
+        "type": "object",
+        "description": "值守记录（daily-comment-duty-flow 积累）",
+        "properties": {
+          "p0_within_30min": {"type": "integer"}, "p0_total": {"type": "integer"},
+          "p1_within_30min": {"type": "integer"}, "p1_total": {"type": "integer"},
+          "reply_total": {"type": "integer"}, "comment_total": {"type": "integer"}
+        }
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": ["summary", "review_rows"],
+    "properties": {
+      "summary": {"type": "object", "description": "整体判定/达标 n/m/转化率/值守执行摘要"},
+      "review_rows": {"type": "array", "description": "逐平台流量×情绪交叉观察（样本<3 不下结论；PV≥50% 且风险>0 → 优先清风险）"},
+      "attribution": {"type": "string", "description": "深度归因与行动建议（模型按 prompt 撰写 ≤3 条，每条挂数据点，人工确认）"}
+    }
+  },
+  "steps": {
+    "dag": "battle-report-generate（战报脚本）→ comment-emotion-detect（情绪脚本）→ 内置复盘合并（交叉观察+SLA摘要）",
+    "failure_handling": {
+      "任一上游退出码≠0或产物缺失": "中止打印 stderr",
+      "指标缺失但评论在": "只出情绪复盘，标注「补数据后复跑」",
+      "评论缺失但指标在": "只出战报，标注「评论记录缺失」",
+      "两者都缺": "退出码 2",
+      "值守记录缺失": "SLA 行标「未记录，建议下次记录」"
+    }
+  },
+  "scripts": {"run": "scripts/run_flow.py", "usage": "python3 scripts/run_flow.py --input input.json --outdir out"},
+  "artifacts": ["out/复盘报告.xlsx", "out/battle_report.json", "out/emotion_scan.json", "out/review_result.json", "out/发布战报.xlsx", "out/评论分类清单.xlsx"],
+  "handoff": {"值守数据": "daily-comment-duty-flow", "发布锚点": "publish-calendar-flow", "归档": "T+7 复盘复用"},
+  "constraints": {
+    "achievement_bands": {"达标": "≥100%", "部分达标": "70%-100%", "未达标": "<70%"},
+    "cross_rule": "PV占比≥50% 且 风险>0 → 优先清该平台风险；样本<3 不下情绪结论",
+    "max_actions": 3,
+    "evidence_required": true,
+    "sampling_rule": "P0/P1 全量 + 其余随机（防存档偏差）",
+    "ai_label_required": true,
+    "human_review_required": true,
+    "external_share_requires_desensitize": true
+  }
+}

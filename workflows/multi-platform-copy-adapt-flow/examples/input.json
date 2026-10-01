@@ -1,0 +1,9 @@
+{
+  "copies": [
+    {"platform": "X", "body": "I lost my 7th API key last year. So I spent two years building ClipMate: every snippet you copy on Windows, searchable for 3 months in 0.3s (tested on 100k entries). Local storage only, never uploaded. Free + Pro $8/mo. Details: https://clipmate.site", "tags": ["buildinpublic", "indiedev"], "lang": "en"},
+    {"platform": "V2EX", "title": "剪贴板历史工具 ClipMate：本地存储，Ctrl+Shift+V 秒搜 3 个月记录", "body": "做这个东西的原因：去年第 7 次弄丢 API key。所有记录只存本机 SQLite，搜索 0.3 秒命中（10 万条实测）。免费 + Pro $8/月。", "lang": "zh"},
+    {"platform": "即刻", "body": "做了两年，我的剪贴板工具终于要发了。Ctrl+Shift+V 秒搜 3 个月记录，0.3 秒命中（10 万条实测），只存本机不上传。免费 + Pro $8/月。", "lang": "zh"},
+    {"platform": "小红书", "title": "这个剪贴板工具也太能打了吧", "body": "丢 API key 丢到破防之后自己做了一个：Ctrl+Shift+V 秒搜 3 个月记录（0.3 秒，10 万条实测），截图 OCR 取字，粘贴去格式，只存本机。免费 + Pro 每月 8 美元。", "tags": ["效率工具", "独立开发"], "lang": "zh"},
+    {"platform": "知乎", "body": "（知乎专栏稿）", "lang": "zh"}
+  ]
+}

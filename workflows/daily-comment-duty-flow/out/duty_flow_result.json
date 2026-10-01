@@ -1,0 +1,81 @@
+{
+  "flow": "daily-comment-duty-flow",
+  "steps": [
+    {
+      "step": 1,
+      "skill": "comment-emotion-detect",
+      "status": "ok",
+      "output": "out\\emotion_scan.json"
+    },
+    {
+      "step": 2,
+      "skill": "（内置）值守加工 + reply-drafting 撰写位",
+      "status": "ok",
+      "output": "C:\\Users\\nsxzy\\WorkBuddy\\2026-09-24-12-12-44\\library\\repos\\launch-commander-zh\\workflows\\daily-comment-duty-flow\\out\\值守清单.xlsx"
+    }
+  ],
+  "board": {
+    "产品": "ClipMate（剪贴板历史工具）",
+    "轮次类型": "发布日值守（每 15 分钟一轮）",
+    "本轮新评论": 6,
+    "正/负/中/疑/风险": "1/0/2/1/2",
+    "待回任务（P0-P2）": 3,
+    "30 分钟 SLA 风险": 2,
+    "健康判定": "正面占比 ≥60% 且 风险=0 为健康；负面 >20% 触发「承认+给方案」集中响应",
+    "升级提示": "P0 全部升级开发者本人；同一用户负面第二回合转私信；媒体/大V询问升级人工",
+    "异常标注": "正常",
+    "说明": "情绪/排队由上游脚本计算；回复草稿由 reply-drafting 撰写并经人工确认"
+  },
+  "tasks": [
+    {
+      "队列位": 1,
+      "优先级": "P0",
+      "平台": "ProductHunt",
+      "用户": "angry_bob",
+      "评论摘录": "Crashed twice within 10 minutes on Windo…",
+      "情绪": "🔴 风险",
+      "风险子类": "退款诉求",
+      "SLA": "30 分钟",
+      "回复骨架": "风险处置：按风险子类标准口径（刷榜=公开说明推广方式；退款=政策+私信渠道；隐私=数据流向+政策链接）",
+      "FAQ命中": "refund|退款",
+      "FAQ口径": "14 天无理由退款，走网站 /refund",
+      "草拟": "reply-drafting 按骨架撰写，人工确认后发布",
+      "状态": "待人工确认"
+    },
+    {
+      "队列位": 2,
+      "优先级": "P0",
+      "平台": "ProductHunt",
+      "用户": "skeptic_pete",
+      "评论摘录": "This is just a copy of Paste with a new …",
+      "情绪": "🔴 风险",
+      "风险子类": "抄袭/竞品指控",
+      "SLA": "30 分钟",
+      "回复骨架": "风险处置：按风险子类标准口径（刷榜=公开说明推广方式；退款=政策+私信渠道；隐私=数据流向+政策链接）",
+      "FAQ命中": "（无口径命中——回复前须人工确认事实，缺口回填 faq-pregenerate）",
+      "FAQ口径": "—",
+      "草拟": "reply-drafting 按骨架撰写，人工确认后发布",
+      "状态": "待人工确认"
+    },
+    {
+      "队列位": 3,
+      "优先级": "P2",
+      "平台": "ProductHunt",
+      "用户": "dev_sarah",
+      "评论摘录": "Does it support Windows 11 dark mode? An…",
+      "情绪": "🔵 疑问",
+      "风险子类": "—",
+      "SLA": "2 小时",
+      "回复骨架": "疑问直答：第一句就是答案（对照 FAQ 口径）→ 一句话支撑 → 钩子续对话",
+      "FAQ命中": "dark mode|深色",
+      "FAQ口径": "支持 Win11 深色模式，自动跟随系统",
+      "草拟": "reply-drafting 按骨架撰写，人工确认后发布",
+      "状态": "待人工确认"
+    }
+  ],
+  "files": [
+    "C:\\Users\\nsxzy\\WorkBuddy\\2026-09-24-12-12-44\\library\\repos\\launch-commander-zh\\workflows\\daily-comment-duty-flow\\out\\值守清单.xlsx",
+    "out\\emotion_scan.json"
+  ],
+  "generated_at": "2026-09-30 17:49:11"
+}

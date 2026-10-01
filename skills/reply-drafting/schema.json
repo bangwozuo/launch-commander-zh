@@ -1,0 +1,63 @@
+{
+  "skill_id": "de_dev_02_sk08",
+  "name": "回复草拟",
+  "type": "atomic",
+  "input": {
+    "type": "object",
+    "required": ["queue"],
+    "properties": {
+      "queue": {
+        "type": "array",
+        "description": "值守队列（来自 comment-emotion-detect 的 P0-P4 排队）",
+        "items": {
+          "type": "object",
+          "required": ["text", "platform"],
+          "properties": {
+            "id": {"type": "integer"}, "user": {"type": "string"},
+            "platform": {"type": "string", "enum": ["ProductHunt", "Reddit", "V2EX", "X", "即刻", "微博", "通用"]},
+            "sentiment": {"type": "string", "description": "情绪/风险子类"},
+            "priority": {"type": "string", "enum": ["P0", "P1", "P2", "P3", "P4"]},
+            "text": {"type": "string", "description": "评论原文（全文）"}
+          }
+        }
+      },
+      "faq_highlights": {"type": "object", "description": "FAQ 库相关口径（价格/功能事实/政策），回复不得超出此范围现编"},
+      "authorized": {"type": "array", "description": "已授权可承诺/可陈述的事项"},
+      "not_authorized": {"type": "array", "description": "未授权事项（具体日期/金额特批/降价），草稿须标「需定夺」"},
+      "launch_day": {"type": "boolean", "description": "是否发布日（影响 SLA：PH 首日 P0/P1 30 分钟）"}
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": ["drafts"],
+    "properties": {
+      "drafts": {
+        "type": "array",
+        "description": "逐条回复草稿（可直接粘贴），按情绪选骨架：负面=承认+给方案+留渠道；疑问=直接回答+支撑+钩子；风险=标准处置；正面=感谢+追问场景",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {"type": "integer"},
+            "platform_tone": {"type": "string", "description": "按平台语感定制（PH 友好/Reddit 平实/V2EX 直接/X ≤280）"},
+            "draft": {"type": "string", "description": "草稿全文，拿起就能发（30 分钟 SLA 项不得写「待确认」）"},
+            "escalation": {"type": "string", "description": "升级标记：退款金额/法律/媒体/第二回合转私信"}
+          }
+        }
+      },
+      "escalation_list": {"type": "array", "description": "需开发者定夺清单（事项/卡点/建议）"},
+      "faq_gaps": {"type": "array", "description": "本次对话暴露的 FAQ 缺口，回填 faq-pregenerate"}
+    }
+  },
+  "constraints": {
+    "sla_p0p1_firstday_minutes": 30,
+    "negative_skeleton": "承认+给方案+留渠道（三段缺一不可）",
+    "no_faq_outside_facts": true,
+    "no_date_promises_unless_scheduled": true,
+    "no_delete_no_astroturfing": true,
+    "max_public_rounds_before_dm": 2,
+    "escalate": ["退款/赔付金额", "法律/许可证", "媒体/大V", "同一用户负面第二回合"],
+    "ai_label_required": true,
+    "human_review_required": true
+  },
+  "artifacts_note": "T2 纯提示词技能，无脚本；草稿经人工确认后才可发布"
+}

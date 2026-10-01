@@ -1,0 +1,11 @@
+{
+  "product": "ClipMate（剪贴板历史工具）",
+  "audience": "Windows 重度文字工作者",
+  "features": [
+    {"name": "全局历史搜索", "description": "Ctrl+Shift+V 秒搜三个月内所有剪贴记录", "demoable": 1, "wow": 5, "breadth": 5, "uniqueness": 3},
+    {"name": "代码片段纯粘贴", "description": "粘贴代码自动去格式，不再手动清理缩进", "demoable": 1, "wow": 3, "breadth": 3, "uniqueness": 4},
+    {"name": "截图 OCR 取字", "description": "截图里的文字一键变成可复制文本", "demoable": 1, "wow": 4, "breadth": 4, "uniqueness": 4},
+    {"name": "端到端加密同步", "description": "设备间同步剪贴板，密钥本地保存", "demoable": 0, "wow": 2, "breadth": 2, "uniqueness": 3},
+    {"name": "低内存占用", "description": "常驻内存 <50MB，比同类省一半", "demoable": 1, "wow": 2, "breadth": 4, "uniqueness": 2}
+  ]
+}

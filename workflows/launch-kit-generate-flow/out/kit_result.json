@@ -1,0 +1,82 @@
+{
+  "flow": "launch-kit-generate-flow",
+  "steps": [
+    {
+      "step": 1,
+      "skill": "hero-image-sellingpoint",
+      "status": "ok",
+      "output": "out\\sellingpoint.json"
+    },
+    {
+      "step": 2,
+      "skill": "（内置）PH 文案包硬约束校验",
+      "status": "ok"
+    },
+    {
+      "step": 3,
+      "skill": "（内置）FAQ 覆盖度校验",
+      "status": "ok",
+      "output": "C:\\Users\\nsxzy\\WorkBuddy\\2026-09-24-12-12-44\\library\\repos\\launch-commander-zh\\workflows\\launch-kit-generate-flow\\out\\素材包校验清单.xlsx"
+    }
+  ],
+  "summary": {
+    "产品": "ClipMate（剪贴板历史工具）",
+    "TOP1 卖点": "全局历史搜索",
+    "入选卖点数": 4,
+    "硬约束检查": 6,
+    "通过项": 4,
+    "红线未过": 0,
+    "FAQ 缺口类": "隐私/安全、可持续性、平台/兼容、边界/限制",
+    "整体判定": "⚠️ 补齐非红线项后进入 T-1",
+    "说明": "卖点评分为脚本计算；PH 文案与 FAQ 文本由 producthunt-copy / faq-pregenerate 生成；本脚本只做硬约束校验"
+  },
+  "checks": [
+    {
+      "件": "tagline",
+      "标准": "≤60 字符、无句号",
+      "结果": "✅",
+      "说明": "34 字符（≤60）",
+      "红线": ""
+    },
+    {
+      "件": "gallery",
+      "标准": "5 张 1270×760（第 1 张含 tagline）",
+      "结果": "✅",
+      "说明": "5 张 / 1270x760",
+      "红线": ""
+    },
+    {
+      "件": "demo 视频",
+      "标准": "≤60s 且 PH 服务器直传",
+      "结果": "✅",
+      "说明": "45s",
+      "红线": ""
+    },
+    {
+      "件": "价格一致性",
+      "标准": "官网/PH/README 逐字一致",
+      "结果": "✅",
+      "说明": "官网:Free + Pro $8/mo / ProductHunt:Free + Pro $8/mo / README:Free + Pro $8/mo",
+      "红线": ""
+    },
+    {
+      "件": "FAQ 总量",
+      "标准": "≥15 条",
+      "结果": "⚠️ 未达标",
+      "说明": "当前 8 条，T-3 前补齐",
+      "红线": ""
+    },
+    {
+      "件": "FAQ 六类覆盖",
+      "标准": "每类 ≥2 条",
+      "结果": "⚠️ 有缺口",
+      "说明": "缺口：隐私/安全、可持续性、平台/兼容、边界/限制",
+      "红线": ""
+    }
+  ],
+  "files": [
+    "C:\\Users\\nsxzy\\WorkBuddy\\2026-09-24-12-12-44\\library\\repos\\launch-commander-zh\\workflows\\launch-kit-generate-flow\\out\\素材包校验清单.xlsx",
+    "out\\sellingpoint.json"
+  ],
+  "generated_at": "2026-09-30 17:49:20"
+}

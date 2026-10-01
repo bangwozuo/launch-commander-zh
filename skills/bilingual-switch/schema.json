@@ -1,0 +1,48 @@
+{
+  "skill_id": "de_dev_02_sk05",
+  "name": "中英双语切换",
+  "type": "atomic",
+  "input": {
+    "type": "object",
+    "required": ["content", "target_lang"],
+    "properties": {
+      "content": {"type": "string", "description": "原文案（单语言完整版）", "maxLength": 5000},
+      "target_lang": {"type": "string", "description": "目标语言与目标社区（如 English（PH/Reddit））", "enum": ["English（PH/Reddit/X）", "中文（V2EX/即刻）", "双向"]},
+      "glossary": {"type": "object", "description": "术语表：产品名/专有名词/tagline 的指定译法（未指定的按类型规则执行）"},
+      "audience_en": {"type": "string", "description": "英文社区受众"},
+      "audience_zh": {"type": "string", "description": "中文社区受众"}
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": ["fact_skeleton", "rewritten"],
+    "properties": {
+      "fact_skeleton": {
+        "type": "array",
+        "description": "事实骨架：功能/数字/价格/承诺逐条对照，两版必须一字不差对应（口径漂移=信任事故）",
+        "items": {"type": "object", "properties": {"事实": {"type": "string"}, "英文表述": {"type": "string"}, "中文表述": {"type": "string"}, "一致": {"type": "boolean"}}}
+      },
+      "rewritten": {
+        "type": "array",
+        "description": "各语言重写稿全文（重写非互译，按目标社区语感）",
+        "items": {"type": "object", "properties": {"lang": {"type": "string"}, "community": {"type": "string"}, "text": {"type": "string"}}}
+      },
+      "glossary_applied": {"type": "array", "description": "术语表执行记录：产品名不翻译/tagline 重写/单位换算/文化梗各自原生"},
+      "self_check": {
+        "type": "object",
+        "description": "英文 Chinglish 7 项 + 中文翻译腔 5 项 + 事实一致性 逐条勾选"
+      }
+    }
+  },
+  "constraints": {
+    "rewrite_not_translate": true,
+    "product_name_untranslated": true,
+    "tagline_recreate_not_translate": true,
+    "chinglish_checks": ["very滥用", "中式搭配直译", "welcome to use/using experience", "主语一致", "冠词单复数", "专名大小写", "成语硬翻"],
+    "translationese_checks": ["公文腔", "「您」", "被动态滥用", "数字单位习惯", "英文语序残留"],
+    "fact_parity_required": true,
+    "ai_label_required": true,
+    "human_review_required": true
+  },
+  "artifacts_note": "T2 纯提示词技能，无脚本；两版均人工确认后发布"
+}

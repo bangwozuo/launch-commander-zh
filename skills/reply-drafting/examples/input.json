@@ -1,0 +1,18 @@
+{
+  "queue": [
+    {"id": 1, "user": "angry_bob", "platform": "ProductHunt", "sentiment": "🔴 风险/退款诉求", "priority": "P0", "text": "Crashed twice within 10 minutes on Windows 10. How do I get a refund?"},
+    {"id": 2, "user": "dev_sarah", "platform": "ProductHunt", "sentiment": "🔵 疑问", "priority": "P2", "text": "Does it support Windows 11 dark mode? And can I sync history across devices?"},
+    {"id": 3, "user": "老王聊软件", "platform": "V2EX", "sentiment": "⚪ 中性/功能请求", "priority": "P4", "text": "用了两天，搜索确实快，但希望加上 OCR 截图取词，要是能支持就好了"},
+    {"id": 4, "user": "skeptic_pete", "platform": "ProductHunt", "sentiment": "🔴 风险/抄袭+刷榜指控", "priority": "P0", "text": "This is just a copy of Paste with a new icon. Also weird how all the upvotes came in the first hour, did you buy upvotes?"}
+  ],
+  "faq_highlights": {
+    "dark_mode": "支持 Win11 深色模式（自动跟随系统）",
+    "sync": "Pro 功能，端到端加密，可选开启",
+    "ocr": "OCR 已上线（Pro），可能需要更新到 2.1",
+    "refund_policy": "14 天无理由退款，走网站 /refund",
+    "upvote_stance": "从未购买或交换投票；初期票来自 800 人 waitlist 邮件通知"
+  },
+  "authorized": ["dark_mode 事实", "sync 事实", "refund_policy", "upvote_stance", "issue 渠道"],
+  "not_authorized": ["具体修复日期", "退款金额特批", "降价承诺"],
+  "launch_day": true
+}

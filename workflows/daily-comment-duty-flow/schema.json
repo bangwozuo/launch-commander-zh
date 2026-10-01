@@ -1,0 +1,53 @@
+{
+  "workflow_id": "de_dev_02_wf04",
+  "name": "当日评论值守",
+  "type": "composite",
+  "input": {
+    "type": "object",
+    "required": ["comments"],
+    "properties": {
+      "launch_day": {"type": "boolean", "description": "是否发布日（影响轮询频率与 P1 SLA：首日 30 分钟）"},
+      "product": {"type": "string", "description": "产品名"},
+      "comments": {
+        "type": "array",
+        "description": "本轮新评论（user/platform/text 全文；text 须全文供 FAQ 匹配）",
+        "items": {"type": "object", "required": ["text"], "properties": {
+          "user": {"type": "string"}, "platform": {"type": "string"}, "text": {"type": "string"}
+        }}
+      },
+      "faq": {"type": "object", "description": "FAQ 口径库（faq-pregenerate 定稿，关键词→口径）；缺失时任务卡标「须人工确认事实」"}
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": ["board", "tasks"],
+    "properties": {
+      "board": {"type": "object", "description": "值守看板：本轮评论数/五类分布/待回任务/30分钟SLA风险/健康判定/异常标注"},
+      "tasks": {"type": "array", "description": "回复任务卡（P0-P2）：SLA/回复骨架/FAQ命中/FAQ口径/状态=待人工确认"},
+      "watchlist": {"type": "array", "description": "观察名单（P3/P4）"},
+      "escalation": {"type": "string", "description": "升级规则：P0升级本人/第二回合转私信/媒体大V升级人工"}
+    }
+  },
+  "steps": {
+    "dag": "comment-emotion-detect（脚本排队）→ 内置值守加工（任务卡+FAQ匹配）→ reply-drafting（草拟位，人工确认发布）",
+    "failure_handling": {
+      "上游退出码≠0或产物缺失": "中止打印 stderr",
+      "评论流为空": "正常退出并标注「发布日 0 评论，检查发布链接与审核状态」",
+      "全部中性": "标红「疑似抓取不全，人工核对平台评论数」",
+      "FAQ库缺失": "任务卡照常生成，备注须人工确认事实"
+    }
+  },
+  "scripts": {"run": "scripts/run_flow.py", "usage": "python3 scripts/run_flow.py --input input.json --outdir out"},
+  "artifacts": ["out/值守清单.xlsx", "out/emotion_scan.json", "out/duty_flow_result.json"],
+  "handoff": {"草拟": "reply-drafting", "口径库": "faq-pregenerate", "战报引用": "launch-battle-review-flow"},
+  "constraints": {
+    "round_minutes_launchday": 15,
+    "round_minutes_t1": 60,
+    "sla": {"P0": 30, "P1_launchday": 30, "P1_normal": 60, "P2": 120, "P3": 1440, "P4": 2880},
+    "backlog_freeze_threshold": 8,
+    "no_auto_reply": true,
+    "no_delete_comments": true,
+    "ai_label_required": true,
+    "human_review_required": true
+  }
+}

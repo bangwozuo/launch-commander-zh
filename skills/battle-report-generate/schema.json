@@ -1,0 +1,81 @@
+{
+  "skill_id": "de_dev_02_sk09",
+  "name": "战报生成",
+  "type": "atomic",
+  "input": {
+    "type": "object",
+    "required": ["platforms"],
+    "properties": {
+      "product": {"type": "string", "description": "产品名"},
+      "launch_date": {"type": "string", "description": "发布日（T0）日期"},
+      "targets": {
+        "type": "object",
+        "description": "五指标目标值；未设目标的指标标注「未设」不参与达标判定",
+        "properties": {
+          "pv": {"type": "integer"}, "signups": {"type": "integer"},
+          "github_stars": {"type": "integer"}, "waitlist": {"type": "integer"},
+          "mentions": {"type": "integer"}
+        }
+      },
+      "platforms": {
+        "type": "array",
+        "description": "各平台发布数据",
+        "items": {
+          "type": "object",
+          "required": ["name", "pv"],
+          "properties": {
+            "name": {"type": "string", "description": "平台名（ProductHunt/V2EX/X/即刻…）"},
+            "pv": {"type": "integer", "description": "页面访问"},
+            "signups": {"type": "integer", "description": "注册/下载数"},
+            "github_stars": {"type": "integer", "description": "新增 GitHub 星"},
+            "waitlist": {"type": "integer", "description": "waitlist 订阅数"},
+            "mentions": {"type": "integer", "description": "独立提及数（转发不算）"},
+            "note": {"type": "string", "description": "备注（排名/发布时点）"}
+          }
+        }
+      },
+      "hourly_pv": {
+        "type": "array",
+        "description": "发布日逐小时 PV（≥2 条时出当日流量曲线）",
+        "items": {"type": "object", "properties": {"hour": {"type": "string"}, "pv": {"type": "integer"}}}
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": ["summary", "metrics"],
+    "properties": {
+      "summary": {
+        "type": "object",
+        "description": "总 PV/注册/转化率/星标/达标数/整体判定",
+        "properties": {
+          "整体判定": {"type": "string", "enum": ["✅ 全部达标", "🟡 大部分达标", "🔴 多数未达标", "未设目标"]},
+          "PV→注册转化率": {"type": "string", "description": "5%-12% 为正常带"}
+        }
+      },
+      "metrics": {
+        "type": "array",
+        "description": "五指标达标表",
+        "items": {"type": "object", "properties": {
+          "判定": {"type": "string", "enum": ["✅ 达标", "🟡 部分达标", "🔴 未达标", "未设目标"]}
+        }}
+      },
+      "attribution_hints": {"type": "array", "description": "规则式归因提示（漏斗定位），深度归因由模型完成"}
+    },
+    "x-review-needed": "归因分析与行动建议须由模型按 prompt.txt 撰写并经人工确认"
+  },
+  "scripts": {
+    "report": "scripts/battle_report.py",
+    "usage": "python3 scripts/battle_report.py --input input.json --outdir out"
+  },
+  "artifacts": ["out/发布战报.xlsx", "out/平台流量对比.png", "out/当日流量曲线.png", "out/battle_report.json"],
+  "constraints": {
+    "metrics": ["pv", "signups", "github_stars", "waitlist", "mentions"],
+    "achievement_bands": {"达标": "≥100%", "部分达标": "70%-100%", "未达标": "<70%"},
+    "conv_baseline": "PV→注册 5%-12%；waitlist/PV 3%-8%",
+    "max_actions": 3,
+    "no_estimate_for_missing": true,
+    "ai_label_required": true,
+    "human_review_required": true
+  }
+}
