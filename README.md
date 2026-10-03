@@ -3,36 +3,83 @@
 > **把"一次性高压发布"变成清单化流程的发布周总指挥**
 
 [![Stage](https://img.shields.io/badge/stage-P0-orange)](https://github.com/bangwozuo)
-[![Asset](https://img.shields.io/badge/asset-prompt--only-blueviolet)](#资产形态)
+[![Asset](https://img.shields.io/badge/asset-prompt%20%2B%20script-blueviolet)](#资产形态)
 [![NoKey](https://img.shields.io/badge/API%20Key-not%20required-success)](#资产形态)
 [![License](https://img.shields.io/badge/license-Apache--2.0-green)](LICENSE)
+
+![演示](docs/demo.mp4)
+
+*演示视频：本仓 5 条工作流的真实执行实录（素材包校验 → 多平台适配校验 → 发布日历排期 → 评论值守 → 战报复盘），每幕均来自脚本 `--demo` 真实运行，非摆拍。*
 
 ---
 
 ## 它是谁
 
-面向 **OPC** 的数字员工资产包。
+面向 **OPC**（独立开发者 / 出海小团队）的数字员工：覆盖发布周全周期——T-7 素材包 → T-3 定稿 → T-1 预检 → T-0 发布与值守 → T+1 战报 → T+7 复盘。
 
 | 项目 | 内容 |
 |------|------|
 | 目标用户 | 即将上线新产品/大版本的全体独立开发者与出海小团队 |
 | 交付物 | 发布素材包齐备提前 ≥48h；发布日评论响应时长 ≤30 分钟；PH/即刻等平台发布日 upvote/互动达成率 |
-| 技能数 | 9 |
-| 工作流数 | 5 |
+| 技能数 | 9（其中 3 个带确定性脚本） |
+| 工作流数 | 5（全部带编排脚本，可实跑出 Excel/PNG 产物） |
 | 旧名存档 | `发布日冲刺指挥官（PH Launch Commander）` |
+
+**数字员工边界**：所有产出「AI 辅助 + 待人工确认」；对外发布动作零自动化（不代点发布、不自动回评论）；不编数据、不刷量、不承诺未授权事项。
+
+**KPI 口径**：素材包省 6-8h/次 ≈ ¥500-640；多平台适配省 3h/次 ≈ ¥240；发布日历省 2h/次 ≈ ¥160；评论值守省 4h/次 ≈ ¥320；P0 风险 30 分钟内升级。
+
+---
+
+## 演示视频中的五个工作流
+
+| 幕 | 工作流 | 截图来源 |
+|---|---|---|
+| 1 | [发布素材包生成](workflows/launch-kit-generate-flow/README.md) | 硬约束校验 4/6 过、红线 0 |
+| 2 | [多平台文案适配](workflows/multi-platform-copy-adapt-flow/README.md) | 8 条规格检查拦下 2 处典型错误 |
+| 3 | [发布日历排期](workflows/publish-calendar-flow/README.md) | 5 平台 6 时点换算，黄金窗口冲突 0 |
+| 4 | [当日评论值守](workflows/daily-comment-duty-flow/README.md) | 6 条评论 → 3 张任务卡 + 3 观察名单 |
+| 5 | [发布战报复盘](workflows/launch-battle-review-flow/README.md) | 达标 1/5，交叉观察 5 条 |
+
+---
+
+## 资产矩阵（9 技能 + 5 工作流）
+
+### 原子技能
+
+| 技能 | 一句话 | 类型 | README |
+|---|---|---|---|
+| Product Hunt 文案 | tagline/描述/gallery/maker comment 全套文案包，6 项 PH 机制硬约束 | T2 纯提示词 | [README](skills/producthunt-copy/README.md) |
+| 首图卖点提炼 | 四维加权评分（演示性 35%+冲击力 25%+受众宽度 25%+差异化 15%）选首图卖点 + GIF 分镜 | T1 脚本型 | [README](skills/hero-image-sellingpoint/README.md) |
+| FAQ 预生成 | 六类质疑预演 ≥15 条可直接粘贴口径，攻击性问题占比 ≥1/3 | T2 纯提示词 | [README](skills/faq-pregenerate/README.md) |
+| 平台格式适配 | 7 平台硬规格表 + 五步重写法，看不出是从别处复制来的 | T2 纯提示词 | [README](skills/platform-format-adapt/README.md) |
+| 中英双语切换 | 重写不是互译：事实骨架一字不差，表达各自原生 | T2 纯提示词 | [README](skills/bilingual-switch/README.md) |
+| 发布排期 | T-7→T+7 倒排时间轴 + T-1 十项清单（3 红线）+ 升降级规则 | T4 SOP 型 | [README](skills/publish-schedule/README.md) |
+| 评论情绪识别 | 五类情绪 + 六类风险子类 + P0-P4 队列，否定翻转防误报 | T1 脚本型 | [README](skills/comment-emotion-detect/README.md) |
+| 回复草拟 | 按情绪选骨架的可粘贴回复草稿，授权边界内不现编口径 | T2 纯提示词 | [README](skills/reply-drafting/README.md) |
+| 战报生成 | 五指标达标三档判定 + 四层漏斗归因，行动建议强制 ≤3 条 | T1 脚本型 | [README](skills/battle-report-generate/README.md) |
+
+### 工作流
+
+| 工作流 | 一句话 | 触发 | README |
+|---|---|---|---|
+| 发布素材包生成 | 三件套生成 + 硬约束校验（价格逐字比对为红线） | 人工（T-7 启动） | [README](workflows/launch-kit-generate-flow/README.md) |
+| 多平台文案适配 | 五平台重写 + 机器校验（字数/披露/双语数字口径） | 事件（素材确认后） | [README](workflows/multi-platform-copy-adapt-flow/README.md) |
+| 发布日历排期 | 倒排日历 + 时区换算 + PH 黄金窗口保护 | 人工（T-3 启动） | [README](workflows/publish-calendar-flow/README.md) |
+| 当日评论值守 | 15 分钟/轮巡逻 → 任务卡 → 人工确认发布（零自动回复） | 定时（发布日每 15 分钟） | [README](workflows/daily-comment-duty-flow/README.md) |
+| 发布战报复盘 | 指标 × 情绪交叉观察 + 值守 SLA 摘要 + 模型归因 | 事件（T+1） | [README](workflows/launch-battle-review-flow/README.md) |
 
 ---
 
 ## 资产形态
 
-**纯提示词资产** —— 这是理解本仓库的关键：
+**提示词 + 确定性脚本**——技能层纯提示词（3 个附脚本），工作流层全部带编排脚本：
 
 | 特性 | 说明 |
 |------|------|
 | ✅ 无需 API Key | 一个 Key 都不需要 |
-| ✅ 无需部署 | 没有服务端，没有脚本 |
-| ✅ 无需依赖 | 克隆后用文本编辑器就能看 |
-| ✅ 平台无关 | 粘贴到任何 AI 工具即可使用 |
+| ✅ 平台无关 | 提示词粘贴到任何 AI 工具即可使用 |
+| ✅ 脚本可实跑 | `python scripts/<x>.py --demo` 零 AI 依赖出 Excel/PNG 产物 |
 | ✅ 用户自备算力 | 模型来自你自己的订阅 |
 
 ---
@@ -40,13 +87,12 @@
 ## 快速开始
 
 ```text
-1. 打开 skills/producthunt-copy/prompt.txt
-2. 全文复制
-3. 粘贴到你常用的 AI 工具（Coze / WorkBuddy / Dify / Claude / ChatGPT）
-4. 按 SKILL.md 的输入规格提供数据
+1. 从上方资产矩阵进入任一资产的 README
+2. 按该 README 的「快速开始」：脚本方式直接跑 --demo；提示词方式复制 prompt.txt
+3. 按 SKILL.md / schema.json 的输入规格提供数据
 ```
 
-就这四步。完整指引见 [使用手册](docs/04-usage.md)。
+完整指引见 [使用手册](docs/04-usage.md)。
 
 ---
 
@@ -55,18 +101,15 @@
 ```text
 launch-commander-zh/
 ├── README.md / employee.md / package.yaml     # 入口与 12 字段定义卡
-├── docs/01~07                                 # 员工级文档（架构/流程/场景/手册/示例/录像/测试）
+├── docs/demo.mp4                              # 5 工作流真实执行演示视频
 ├── skills/                                    # 9 个原子技能
 │   └── <skill>/
 │       ├── README.md  SKILL.md  prompt.txt  schema.json  examples/
-│       └── docs/                              # 该技能自己的 10 项文档 + 配图
-├── workflows/                                 # 5 条工作流（复合技能）
-│   └── <workflow>/
-│       ├── README.md  SKILL.md  prompt.txt  schema.json  examples/
-│       └── docs/                              # 该工作流自己的 10 项文档 + 配图
+│       ├── scripts/                           # （T1 资产）确定性脚本
+│       ├── out/                               # 实跑产物（Excel / PNG / JSON）
+│       └── docs/                              # 9 项文档 + run-terminal.png 执行截图
+├── workflows/                                 # 5 条工作流（同上结构，均带编排脚本）
 ├── knowledge/                                 # RAG wiki 知识库
-│   ├── README.md  RAG-接入指南.md  template.md
-│   └── wiki/(index.md, _template.md, entries/)
 ├── connectors/                                # 连接器说明 + 合规红线
 ├── quality/                                   # 效果基线与追踪日志
 └── tests/                                     # 资产校验测试（离线，无需密钥）
@@ -76,7 +119,7 @@ launch-commander-zh/
 
 | 文档 | 内容 |
 |------|------|
-| `README.md` | 资产速览与快速开始 |
+| `README.md` | 量化亮点 + 真实执行截图 + 规则表 + 真实 IO + 流水线图 |
 | `docs/01-usage-manual.md` | 安装使用手册 |
 | `docs/02-architecture.md` | 业务架构图 |
 | `docs/03-flow.md` | 流程图（Mermaid + 配图） |
@@ -86,7 +129,7 @@ launch-commander-zh/
 | `docs/07-audience.md` | 用户群体 |
 | `docs/08-value.md` | 解决问题与价值 |
 | `docs/09-test-report.md` | 测试报告 |
-| `docs/assets/overview.svg` | 自动生成的流程示意图 |
+| `docs/assets/run-terminal.png` | 真实执行终端截图（`--run` 实跑 / `--stdin` 实产物） |
 
 ---
 
@@ -101,41 +144,6 @@ launch-commander-zh/
 | [示例库](docs/05-examples.md) | 9 组输入输出示例 |
 | [录像脚本](docs/06-recording-script.md) | 7 镜头分镜 + 旁白稿 |
 | [校验报告](docs/07-test-report.md) | 资产质量校验结果 |
-
----
-
-## 技能清单（9 个）
-
-| # | 技能 | 能力族 | 复杂度 | 提示词 | 文档 |
-|---|------|--------|--------|--------|------|
-| 1 | Product Hunt 文案 | 上架优化 | `S` | [prompt.txt](skills/producthunt-copy/prompt.txt) | [docs](skills/producthunt-copy/docs/) |
-| 2 | 首图卖点提炼 | 摘要提炼 | `S` | [prompt.txt](skills/hero-image-sellingpoint/prompt.txt) | [docs](skills/hero-image-sellingpoint/docs/) |
-| 3 | FAQ 预生成 | 回复应答 | `S` | [prompt.txt](skills/faq-pregenerate/prompt.txt) | [docs](skills/faq-pregenerate/docs/) |
-| 4 | 平台格式适配 | 改写适配 | `S` | [prompt.txt](skills/platform-format-adapt/prompt.txt) | [docs](skills/platform-format-adapt/docs/) |
-| 5 | 中英双语切换 | 上架优化 | `S` | [prompt.txt](skills/bilingual-switch/prompt.txt) | [docs](skills/bilingual-switch/docs/) |
-| 6 | 发布排期 | 排期调度 | `S` | [prompt.txt](skills/publish-schedule/prompt.txt) | [docs](skills/publish-schedule/docs/) |
-| 7 | 评论情绪识别 | 分类打标 | `M` | [prompt.txt](skills/comment-emotion-detect/prompt.txt) | [docs](skills/comment-emotion-detect/docs/) |
-| 8 | 回复草拟 | 文案生成 | `S` | [prompt.txt](skills/reply-drafting/prompt.txt) | [docs](skills/reply-drafting/docs/) |
-| 9 | 战报生成 | 分析诊断 | `S` | [prompt.txt](skills/battle-report-generate/prompt.txt) | [docs](skills/battle-report-generate/docs/) |
-
-## 工作流清单（5 条）
-
-| # | 工作流 | 阶段 | 复杂度 | 触发 | 定义 | 文档 |
-|---|--------|------|--------|------|------|------|
-| 1 | 发布素材包生成 | `P0` | `S` | 人工（T-7 天启动） | [SKILL.md](workflows/launch-kit-generate-flow/SKILL.md) | [docs](workflows/launch-kit-generate-flow/docs/) |
-| 2 | 多平台文案适配 | `P0` | `S` | 事件（素材确认后） | [SKILL.md](workflows/multi-platform-copy-adapt-flow/SKILL.md) | [docs](workflows/multi-platform-copy-adapt-flow/docs/) |
-| 3 | 发布日历排期 | `P0` | `S` | 人工（T-3 天） | [SKILL.md](workflows/publish-calendar-flow/SKILL.md) | [docs](workflows/publish-calendar-flow/docs/) |
-| 4 | 当日评论值守 | `P1` | `M` | 定时（发布日每 15 分钟） | [SKILL.md](workflows/daily-comment-duty-flow/SKILL.md) | [docs](workflows/daily-comment-duty-flow/docs/) |
-| 5 | 发布战报复盘 | `P1` | `S` | 事件（T+1） | [SKILL.md](workflows/launch-battle-review-flow/SKILL.md) | [docs](workflows/launch-battle-review-flow/docs/) |
-
----
-
-## 知识库与连接器
-
-| 目录 | 说明 |
-|------|------|
-| [`knowledge/`](knowledge/README.md) | RAG wiki 知识库：填入业务信息可显著提升输出质量 |
-| [`connectors/`](connectors/README.md) | 连接器说明：数据从哪来、怎么合规地来 |
 
 ---
 
