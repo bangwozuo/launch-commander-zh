@@ -7,6 +7,8 @@
 
 ![真实执行](docs/assets/run-terminal.png)
 
+![演示视频](docs/assets/demo.mp4)
+
 *上图来自真实执行：`python scripts/run_flow.py --demo` 退出码 0。五平台版本校验——8 条规格检查未过 2（X 首条带链接 ❌、V2EX 标题 44 字超限 ❌，均为演示故意留的典型错误）、知乎未收录标 ⚠️、双语数字口径比对 ✅ 一致，判定「❌ 2 项未过，修正后复跑」。*
 
 ---

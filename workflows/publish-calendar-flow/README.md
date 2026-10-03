@@ -7,6 +7,8 @@
 
 ![真实执行](docs/assets/run-terminal.png)
 
+![演示视频](docs/assets/demo.mp4)
+
 *上图来自真实执行：`python scripts/run_flow.py --demo` 退出码 0。ClipMate 发布日 2026-09-29（周二）、开发者 UTC+8——5 平台 6 条时点全部换算（00:01 PT = 本地 15:01），黄金窗口冲突 0 个，产物落盘发布日历.xlsx + T0 时间轴 PNG + JSON。*
 
 ---

@@ -7,6 +7,8 @@
 
 ![输出预览](docs/assets/run-terminal.png)
 
+![演示视频](docs/assets/demo.mp4)
+
 *上图来自 `examples/output.md` 实跑产物预览：ClipMate T-3 预演产出 8 条可粘贴口径（含和 Ditto 对比、为什么不开源、数据会上传吗等攻击性问题），覆盖度检查暴露 4 类缺口。*
 
 ---

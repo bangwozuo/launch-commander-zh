@@ -7,6 +7,8 @@
 
 ![输出预览](docs/assets/run-terminal.png)
 
+![演示视频](docs/assets/demo.mp4)
+
 *上图来自 `examples/output.md` 实跑产物预览：ClipMate 主稿 → X（thread×2，条 1 共 271 字符）/ V2EX（标题 33 字）/ 即刻（386 字）三平台适配，长度与图规格逐项核对全过。*
 
 ---

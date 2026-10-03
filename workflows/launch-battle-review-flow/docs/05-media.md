@@ -1,5 +1,39 @@
 # 截图与录屏
 
+> 以下素材均来自**真实执行**：`--run` 实拍终端 / 实跑产物文件，无摆拍。
+
+## 演示视频
+
+![演示视频](assets/demo.mp4)
+
+*第二帧为实跑产物图表*
+
+## 执行截图
+
+![真实执行](assets/run-terminal.png)
+
+## 实跑产物
+
+| 文件 | 说明 |
+|---|---|
+| [`out/_battle_input.json`](out/_battle_input.json) | 结构化结果（实跑生成） · 2 KB |
+| [`out/_demo_input.json`](out/_demo_input.json) | 结构化结果（实跑生成） · 4 KB |
+| [`out/_emotion_input.json`](out/_emotion_input.json) | 结构化结果（实跑生成） · 1 KB |
+| [`out/battle_report.json`](out/battle_report.json) | 结构化结果（实跑生成） · 3 KB |
+| [`out/emotion_scan.json`](out/emotion_scan.json) | 结构化结果（实跑生成） · 4 KB |
+| [`out/review_result.json`](out/review_result.json) | 结构化结果（实跑生成） · 2 KB |
+| [`out/发布战报.xlsx`](out/发布战报.xlsx) | Excel 工作簿（实跑生成） · 9 KB |
+| [`out/复盘报告.xlsx`](out/复盘报告.xlsx) | Excel 工作簿（实跑生成） · 7 KB |
+| [`out/平台流量对比.png`](out/平台流量对比.png) | 图表产物（实跑生成） · 27 KB |
+| [`out/当日流量曲线.png`](out/当日流量曲线.png) | 图表产物（实跑生成） · 57 KB |
+| [`out/情绪分布.png`](out/情绪分布.png) | 图表产物（实跑生成） · 26 KB |
+| [`out/评论分类清单.xlsx`](out/评论分类清单.xlsx) | Excel 工作簿（实跑生成） · 10 KB |
+
+
+---
+
+## 附录：实跑输出明细
+
 > 本资产为纯提示词客户端资产，无界面可截图。以下为**实跑运行效果**。
 
 ## 运行效果

@@ -7,6 +7,8 @@
 
 ![真实执行](docs/assets/run-terminal.png)
 
+![演示视频](docs/assets/demo.mp4)
+
 *上图来自真实执行：`python scripts/run_flow.py --demo` 退出码 0。ClipMate 三件套校验——硬约束 6 项通过 4、红线未过 0、FAQ 只有 8 条（<15）判「⚠️ 补齐非红线项后进入 T-1」，卖点评分实跑入选 4 个（TOP1 = 全局历史搜索 90.0 分）。*
 
 ---

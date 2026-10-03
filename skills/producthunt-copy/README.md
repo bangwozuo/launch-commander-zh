@@ -7,6 +7,8 @@
 
 ![输出预览](docs/assets/run-terminal.png)
 
+![演示视频](docs/assets/demo.mp4)
+
 *上图来自 `examples/output.md` 实跑产物预览：ClipMate 文案包——tagline 38 字符（≤60）✅、产品描述 193 字符（≤260）✅、maker comment 217 词（150-250）✅、gallery 5 张配文 + tagline 候选 3 条。*
 
 ---
