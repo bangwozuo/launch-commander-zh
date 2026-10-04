@@ -7,7 +7,7 @@
 
 ![真实执行](docs/assets/run-terminal.png)
 
-![演示视频](docs/assets/demo.mp4)
+🎬 **[▶ 观看演示视频](docs/assets/demo.mp4)** — 四幕检测叙事：业务钩子 → 真实执行 → 检查项逐条亮灯 → 交付物
 
 *上图来自真实执行：`python scripts/emotion_scan.py --demo` 退出码 0。7 条评论判出「正 1 / 负 0 / 中 2 / 疑 1 / 风险 3」，P0+P1 共 3 条进优先队列，产物落盘 Excel + 情绪分布 PNG + JSON。*
 

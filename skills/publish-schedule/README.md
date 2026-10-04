@@ -7,7 +7,7 @@
 
 ![输出预览](docs/assets/run-terminal.png)
 
-![演示视频](docs/assets/demo.mp4)
+🎬 **[▶ 观看演示视频](docs/assets/demo.mp4)** — 四幕流转叙事：业务钩子 → 真实执行 → 数据管线节点动画 → 交付物
 
 *上图来自 `examples/output.md` 实跑产物预览：ClipMate 发布排期（开发者 UTC+8）——倒排日历 T-7 至 T+7 六节点、T-0 时点表（00:01 PT = 本地 15:01，闹钟 ×3：14:30/14:50/15:01）、T-1 十项清单与升降级规则。*
 

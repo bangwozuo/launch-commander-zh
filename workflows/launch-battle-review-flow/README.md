@@ -7,7 +7,7 @@
 
 ![真实执行](docs/assets/run-terminal.png)
 
-![演示视频](docs/assets/demo.mp4)
+🎬 **[▶ 观看演示视频](docs/assets/demo.mp4)** — 四幕流转叙事：业务钩子 → 真实执行 → 数据管线节点动画 → 交付物
 
 *上图来自真实执行：`python scripts/run_flow.py --demo` 退出码 0。ClipMate T+1 三路合并——总 PV 4910 / 注册 272（转化率 5.5%）、达标 1/5 判「🔴 多数未达标」、P0 30 分钟内处理 2/2，交叉观察 5 条，产物落盘复盘报告.xlsx。*
 

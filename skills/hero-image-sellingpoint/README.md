@@ -7,7 +7,7 @@
 
 ![真实执行](docs/assets/run-terminal.png)
 
-![演示视频](docs/assets/demo.mp4)
+🎬 **[▶ 观看演示视频](docs/assets/demo.mp4)** — 四幕数据叙事：业务钩子 → 真实执行 → 指标条形图生长 → 交付物
 
 *上图来自真实执行：`python scripts/sellingpoint_score.py --demo` 退出码 0。5 个功能加权评分后入选 4 个，TOP1 = 全局历史搜索（90.0 分），并检出 1 个不可演示功能（端到端加密同步）不做 GIF。*
 

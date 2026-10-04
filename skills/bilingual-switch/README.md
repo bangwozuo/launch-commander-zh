@@ -7,7 +7,7 @@
 
 ![输出预览](docs/assets/run-terminal.png)
 
-![演示视频](docs/assets/demo.mp4)
+🎬 **[▶ 观看演示视频](docs/assets/demo.mp4)** — 四幕流转叙事：业务钩子 → 真实执行 → 数据管线节点动画 → 交付物
 
 *上图来自 `examples/output.md` 实跑产物预览：ClipMate 中文主稿 → 英文版重写，事实骨架 7 条逐项一致，术语表 5 条执行完毕（ClipMate 不翻译、10 万条 → 100k entries、$8/月 → $8/mo）。*
 

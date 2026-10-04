@@ -7,7 +7,9 @@
 [![NoKey](https://img.shields.io/badge/API%20Key-not%20required-success)](#资产形态)
 [![License](https://img.shields.io/badge/license-Apache--2.0-green)](LICENSE)
 
-![演示](docs/demo.mp4)
+![演示](docs/assets/hero.gif)
+
+*▲ 实时演示（自动循环）· [▶ 观看完整版合集视频](docs/demo.mp4)*
 
 *演示视频：本仓 5 条工作流的真实执行实录（素材包校验 → 多平台适配校验 → 发布日历排期 → 评论值守 → 战报复盘），每幕均来自脚本 `--demo` 真实运行，非摆拍。*
 
