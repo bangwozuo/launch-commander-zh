@@ -7,7 +7,7 @@
 
 ![真实执行](docs/assets/run-terminal.png)
 
-🎬 **[▶ 观看演示视频](docs/assets/demo.mp4)** — 四幕流转叙事：业务钩子 → 真实执行 → 数据管线节点动画 → 交付物
+🎬 **[▶ 观看演示视频（在线播放）](https://cdn.jsdelivr.net/gh/bangwozuo/launch-commander-zh@main/workflows/publish-calendar-flow/docs/assets/demo.mp4) · [GitHub 页](https://github.com/bangwozuo/launch-commander-zh/blob/main/workflows/publish-calendar-flow/docs/assets/demo.mp4)** — 四幕流转叙事：业务钩子 → 真实执行 → 数据管线节点动画 → 交付物
 
 *上图来自真实执行：`python scripts/run_flow.py --demo` 退出码 0。ClipMate 发布日 2026-09-29（周二）、开发者 UTC+8——5 平台 6 条时点全部换算（00:01 PT = 本地 15:01），黄金窗口冲突 0 个，产物落盘发布日历.xlsx + T0 时间轴 PNG + JSON。*
 

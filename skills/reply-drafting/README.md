@@ -7,7 +7,7 @@
 
 ![输出预览](docs/assets/run-terminal.png)
 
-🎬 **[▶ 观看演示视频](docs/assets/demo.mp4)** — 四幕检测叙事：业务钩子 → 真实执行 → 检查项逐条亮灯 → 交付物
+🎬 **[▶ 观看演示视频（在线播放）](https://cdn.jsdelivr.net/gh/bangwozuo/launch-commander-zh@main/skills/reply-drafting/docs/assets/demo.mp4) · [GitHub 页](https://github.com/bangwozuo/launch-commander-zh/blob/main/skills/reply-drafting/docs/assets/demo.mp4)** — 四幕检测叙事：业务钩子 → 真实执行 → 检查项逐条亮灯 → 交付物
 
 *上图来自 `examples/output.md` 实跑产物预览：发布日值守队列 4 条（P0×2 / P2 / P4）逐条草拟——退款诉求给「14 天无理由 + 私信渠道」、疑问直答带钩子、功能请求给更新路径、抄袭+刷榜指控按标准处置。*
 
