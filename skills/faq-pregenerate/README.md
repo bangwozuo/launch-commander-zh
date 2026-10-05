@@ -7,7 +7,9 @@
 
 ![输出预览](docs/assets/run-terminal.png)
 
-🎬 **[▶ 观看演示视频（在线播放）](https://cdn.jsdelivr.net/gh/bangwozuo/launch-commander-zh@main/skills/faq-pregenerate/docs/assets/demo.mp4) · [GitHub 页](https://github.com/bangwozuo/launch-commander-zh/blob/main/skills/faq-pregenerate/docs/assets/demo.mp4)** — 四幕流转叙事：业务钩子 → 真实执行 → 数据管线节点动画 → 交付物
+![演示](https://cdn.jsdelivr.net/gh/bangwozuo/launch-commander-zh@main/skills/faq-pregenerate/docs/assets/demo.gif)
+
+🎬 **[▶ 观看高清完整版（mp4）](https://cdn.jsdelivr.net/gh/bangwozuo/launch-commander-zh@main/skills/faq-pregenerate/docs/assets/demo.mp4)** — 四幕流转叙事：业务钩子 → 真实执行 → 数据管线节点动画 → 交付物
 
 *上图来自 `examples/output.md` 实跑产物预览：ClipMate T-3 预演产出 8 条可粘贴口径（含和 Ditto 对比、为什么不开源、数据会上传吗等攻击性问题），覆盖度检查暴露 4 类缺口。*
 

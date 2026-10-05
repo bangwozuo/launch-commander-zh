@@ -7,7 +7,9 @@
 
 ![真实执行](docs/assets/run-terminal.png)
 
-🎬 **[▶ 观看演示视频（在线播放）](https://cdn.jsdelivr.net/gh/bangwozuo/launch-commander-zh@main/workflows/daily-comment-duty-flow/docs/assets/demo.mp4) · [GitHub 页](https://github.com/bangwozuo/launch-commander-zh/blob/main/workflows/daily-comment-duty-flow/docs/assets/demo.mp4)** — 四幕检测叙事：业务钩子 → 真实执行 → 检查项逐条亮灯 → 交付物
+![演示](https://cdn.jsdelivr.net/gh/bangwozuo/launch-commander-zh@main/workflows/daily-comment-duty-flow/docs/assets/demo.gif)
+
+🎬 **[▶ 观看高清完整版（mp4）](https://cdn.jsdelivr.net/gh/bangwozuo/launch-commander-zh@main/workflows/daily-comment-duty-flow/docs/assets/demo.mp4)** — 四幕检测叙事：业务钩子 → 真实执行 → 检查项逐条亮灯 → 交付物
 
 *上图来自真实执行：`python scripts/run_flow.py --demo` 退出码 0。发布日一轮 6 条新评论（PH/V2EX/即刻）——待回任务 3 条（30 分钟 SLA 风险 2 条）、观察 3 条；退款诉求命中 FAQ 口径「14 天无理由」，抄袭+刷榜指控无命中标「回复前须人工确认事实」。*
 

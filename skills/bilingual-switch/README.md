@@ -7,7 +7,9 @@
 
 ![输出预览](docs/assets/run-terminal.png)
 
-🎬 **[▶ 观看演示视频（在线播放）](https://cdn.jsdelivr.net/gh/bangwozuo/launch-commander-zh@main/skills/bilingual-switch/docs/assets/demo.mp4) · [GitHub 页](https://github.com/bangwozuo/launch-commander-zh/blob/main/skills/bilingual-switch/docs/assets/demo.mp4)** — 四幕流转叙事：业务钩子 → 真实执行 → 数据管线节点动画 → 交付物
+![演示](https://cdn.jsdelivr.net/gh/bangwozuo/launch-commander-zh@main/skills/bilingual-switch/docs/assets/demo.gif)
+
+🎬 **[▶ 观看高清完整版（mp4）](https://cdn.jsdelivr.net/gh/bangwozuo/launch-commander-zh@main/skills/bilingual-switch/docs/assets/demo.mp4)** — 四幕流转叙事：业务钩子 → 真实执行 → 数据管线节点动画 → 交付物
 
 *上图来自 `examples/output.md` 实跑产物预览：ClipMate 中文主稿 → 英文版重写，事实骨架 7 条逐项一致，术语表 5 条执行完毕（ClipMate 不翻译、10 万条 → 100k entries、$8/月 → $8/mo）。*
 
