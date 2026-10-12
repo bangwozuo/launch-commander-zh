@@ -111,27 +111,27 @@ launch-commander-zh/
 
 ## 技能清单（9 个）
 
-| # | 技能 | 能力族 | 复杂度 | 提示词 | 文档 |
-|---|------|--------|--------|--------|------|
-| 1 | Product Hunt 文案 | 文案撰写 | `S` | [prompt.txt](skills/producthunt-copy/prompt.txt) | [docs](skills/producthunt-copy/docs/) |
-| 2 | 首图卖点提炼 | 摘要与聚类 | `S` | [prompt.txt](skills/hero-image-sellingpoint/prompt.txt) | [docs](skills/hero-image-sellingpoint/docs/) |
-| 3 | FAQ 预生成 | 问答库生成 | `S` | [prompt.txt](skills/faq-pregenerate/prompt.txt) | [docs](skills/faq-pregenerate/docs/) |
-| 4 | 平台格式适配 | 改写与适配 | `S` | [prompt.txt](skills/platform-format-adapt/prompt.txt) | [docs](skills/platform-format-adapt/docs/) |
-| 5 | 中英双语切换 | 多语言转换 | `S` | [prompt.txt](skills/bilingual-switch/prompt.txt) | [docs](skills/bilingual-switch/docs/) |
-| 6 | 发布排期 | 排期与调度 | `S` | [prompt.txt](skills/publish-schedule/prompt.txt) | [docs](skills/publish-schedule/docs/) |
-| 7 | 评论情绪识别 | 分类打标 | `M` | [prompt.txt](skills/comment-emotion-detect/prompt.txt) | [docs](skills/comment-emotion-detect/docs/) |
-| 8 | 回复草拟 | 应答与话术 | `S` | [prompt.txt](skills/reply-drafting/prompt.txt) | [docs](skills/reply-drafting/docs/) |
-| 9 | 战报生成 | 报告与简报 | `S` | [prompt.txt](skills/battle-report-generate/prompt.txt) | [docs](skills/battle-report-generate/docs/) |
+| # | 技能 | 能力族 | 复杂度 | 说明文档 |
+|---|------|--------|--------|----------|
+| 1 | Product Hunt 文案 | 文案撰写 | `S` | [README](skills/producthunt-copy/README.md) |
+| 2 | 首图卖点提炼 | 摘要与聚类 | `S` | [README](skills/hero-image-sellingpoint/README.md) |
+| 3 | FAQ 预生成 | 问答库生成 | `S` | [README](skills/faq-pregenerate/README.md) |
+| 4 | 平台格式适配 | 改写与适配 | `S` | [README](skills/platform-format-adapt/README.md) |
+| 5 | 中英双语切换 | 多语言转换 | `S` | [README](skills/bilingual-switch/README.md) |
+| 6 | 发布排期 | 排期与调度 | `S` | [README](skills/publish-schedule/README.md) |
+| 7 | 评论情绪识别 | 分类打标 | `M` | [README](skills/comment-emotion-detect/README.md) |
+| 8 | 回复草拟 | 应答与话术 | `S` | [README](skills/reply-drafting/README.md) |
+| 9 | 战报生成 | 报告与简报 | `S` | [README](skills/battle-report-generate/README.md) |
 
 ## 工作流清单（5 条）
 
-| # | 工作流 | 阶段 | 复杂度 | 触发 | 定义 | 文档 |
-|---|--------|------|--------|------|------|------|
-| 1 | 发布素材包生成 | `P0` | `S` | 人工（T-7 天启动） | [SKILL.md](workflows/launch-kit-generate-flow/SKILL.md) | [docs](workflows/launch-kit-generate-flow/docs/) |
-| 2 | 多平台文案适配 | `P0` | `S` | 事件（素材确认后） | [SKILL.md](workflows/multi-platform-copy-adapt-flow/SKILL.md) | [docs](workflows/multi-platform-copy-adapt-flow/docs/) |
-| 3 | 发布日历排期 | `P0` | `S` | 人工（T-3 天） | [SKILL.md](workflows/publish-calendar-flow/SKILL.md) | [docs](workflows/publish-calendar-flow/docs/) |
-| 4 | 当日评论值守 | `P1` | `M` | 定时（发布日每 15 分钟） | [SKILL.md](workflows/daily-comment-duty-flow/SKILL.md) | [docs](workflows/daily-comment-duty-flow/docs/) |
-| 5 | 发布战报复盘 | `P1` | `S` | 事件（T+1） | [SKILL.md](workflows/launch-battle-review-flow/SKILL.md) | [docs](workflows/launch-battle-review-flow/docs/) |
+| # | 工作流 | 阶段 | 复杂度 | 触发 | 说明文档 |
+|---|--------|------|--------|------|----------|
+| 1 | 发布素材包生成 | `P0` | `S` | 人工（T-7 天启动） | [README](workflows/launch-kit-generate-flow/README.md) |
+| 2 | 多平台文案适配 | `P0` | `S` | 事件（素材确认后） | [README](workflows/multi-platform-copy-adapt-flow/README.md) |
+| 3 | 发布日历排期 | `P0` | `S` | 人工（T-3 天） | [README](workflows/publish-calendar-flow/README.md) |
+| 4 | 当日评论值守 | `P1` | `M` | 定时（发布日每 15 分钟） | [README](workflows/daily-comment-duty-flow/README.md) |
+| 5 | 发布战报复盘 | `P1` | `S` | 事件（T+1） | [README](workflows/launch-battle-review-flow/README.md) |
 
 ---
 
