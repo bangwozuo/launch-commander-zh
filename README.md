@@ -49,7 +49,7 @@
 ## 快速开始
 
 ```text
-1. 从上方资产矩阵进入任一资产的 README
+1. 从下方技能清单/工作流清单进入任一资产的 README
 2. 按该 README 的「快速开始」：脚本方式直接跑 --demo；提示词方式复制 prompt.txt
 3. 按 SKILL.md / schema.json 的输入规格提供数据
 ```
