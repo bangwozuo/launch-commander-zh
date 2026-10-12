@@ -4,17 +4,35 @@
   "type": "atomic",
   "input": {
     "type": "object",
-    "required": ["subject"],
+    "required": [
+      "subject"
+    ],
     "properties": {
-      "subject": {"type": "string", "description": "产品说明：核心功能、定价、平台、竞品、开发形态（一人/团队）", "maxLength": 2000},
-      "known_questions": {"type": "array", "description": "已知高频问题（历史评论/waitlist 邮件/内测群收集）"},
-      "launch_context": {"type": "string", "description": "发布时点与目标社区（英文 PH/Reddit/X + 中文 V2EX/即刻）"},
-      "audience": {"type": "string", "description": "目标受众"}
+      "subject": {
+        "type": "string",
+        "description": "产品说明：核心功能、定价、平台、竞品、开发形态（一人/团队）",
+        "maxLength": 2000
+      },
+      "known_questions": {
+        "type": "array",
+        "description": "已知高频问题（历史评论/waitlist 邮件/内测群收集）"
+      },
+      "launch_context": {
+        "type": "string",
+        "description": "发布时点与目标社区（英文 PH/Reddit/X + 中文 V2EX/即刻）"
+      },
+      "audience": {
+        "type": "string",
+        "description": "目标受众"
+      }
     }
   },
   "output": {
     "type": "object",
-    "required": ["qa_list", "coverage_check"],
+    "required": [
+      "qa_list",
+      "coverage_check"
+    ],
     "properties": {
       "qa_list": {
         "type": "array",
@@ -22,17 +40,46 @@
         "items": {
           "type": "object",
           "properties": {
-            "类": {"type": "string", "enum": ["价值质疑", "价格质疑", "隐私/安全", "可持续性", "平台/兼容", "边界/限制"]},
-            "问题": {"type": "string"},
-            "触发场景": {"type": "string", "description": "含英文社区问法，供发布日按关键词匹配"},
-            "应答口径": {"type": "string", "description": "三层结构：直接回答/一句话支撑/钩子"},
-            "覆盖平台": {"type": "string"}
+            "类": {
+              "type": "string",
+              "enum": [
+                "价值质疑",
+                "价格质疑",
+                "隐私/安全",
+                "可持续性",
+                "平台/兼容",
+                "边界/限制"
+              ]
+            },
+            "问题": {
+              "type": "string"
+            },
+            "触发场景": {
+              "type": "string",
+              "description": "含英文社区问法，供发布日按关键词匹配"
+            },
+            "应答口径": {
+              "type": "string",
+              "description": "三层结构：直接回答/一句话支撑/钩子"
+            },
+            "覆盖平台": {
+              "type": "string"
+            }
           }
         }
       },
-      "coverage_check": {"type": "array", "description": "六类条数 vs ≥2 达标线；总条数 vs 基础库 ≥15 条"},
-      "escalation": {"type": "array", "description": "需开发者定夺的问题（定价变更/法律/承诺日期），FAQ 不擅自定口径"},
-      "consistency_check": {"type": "array", "description": "口径一致性核对：与落地页/README 逐字一致；中英版本事实一致"}
+      "coverage_check": {
+        "type": "array",
+        "description": "六类条数 vs ≥2 达标线；总条数 vs 基础库 ≥15 条"
+      },
+      "escalation": {
+        "type": "array",
+        "description": "需开发者定夺的问题（定价变更/法律/承诺日期），FAQ 不擅自定口径"
+      },
+      "consistency_check": {
+        "type": "array",
+        "description": "口径一致性核对：与落地页/README 逐字一致；中英版本事实一致"
+      }
     }
   },
   "constraints": {
@@ -45,7 +92,8 @@
     "legal_to_human": true,
     "rewrite_not_translate": true,
     "ai_label_required": true,
-    "human_review_required": true
+    "human_review_required": true,
+    "external_api_required": false
   },
   "artifacts_note": "T2 纯提示词技能，无脚本；口径库经开发者逐条确认后用于发布日值守"
 }
